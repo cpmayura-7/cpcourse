@@ -39,6 +39,105 @@
 # assert(bonusPlayThreeDiceYahtzee(2333555) == (555, 35))
 
 
+def playstep2(hand, dice):
+	# your code goes here
+	h1 = hand
+	d1 = dice
+	a = []
+	while(hand>0):
+		h = hand%10
+		hand = hand//10
+		a.append(h)
+	# a=a[::-1]
+	a.sort(reverse=True)
+	b = []
+	while(dice>0):
+		d = dice%10
+		dice = dice//10
+		b.append(d)
+	temp = []
+	ad = ""
+	cn = 0
+	rep = []
+
+	for i in a:
+		cnt = a.count(i)
+		if(cnt>1):
+			ad = i 
+			cn = cnt
+	if(cn==0):
+		temp = []
+		temp.append(a[0])
+		temp = temp+b[0:2]
+		b = b[2:]
+		b=b[::-1]
+		temp.sort(reverse=True)
+		temp1 = ""
+		b1=""
+		for i in temp:
+			temp1+=str(i)
+		for i in b:
+			b1+=str(i)
+		if(len(b1)==0):
+			b1="0"
+		return(int(temp1),int(b1))
+
+	else:
+		for i in range(cn):
+			rep.append(ad)
+		crep = len(rep)
+		if(crep<3):
+			rep.append(b[0])
+			b=b[1:]
+			b=b[::-1]
+			rep.sort(reverse=True)
+			rep1 = ""
+			b1=""
+			for i in rep:
+				rep1+=str(i)
+			for i in b:
+				b1+=str(i)
+			return(int(rep1),int(b1))
+		else:
+			return(h1,d1)
+
 def bonusplaythreediceyahtzee(dice):
 	# Your code goes here
 	pass
+	# pass
+	a = []
+	ha = ""
+	while(dice>0):
+		d = dice%10
+		dice = dice//10
+		a.append(d)
+	# a=a[::-1]
+	h = a[:3]
+	d = a[3:]
+	d = d[::-1]
+	da = ""
+	for i in d:
+		da+=str(i)
+	dic = int(da)
+	for i in h:
+		ha+=str(i)
+	hand = int(ha)
+	(hand,dic)=playstep2(hand,dic)
+	(hand,dic)=playstep2(hand,dic)
+	c = 0
+	k = ""
+	hand1 = str(hand)
+	for i in hand1:
+		re = hand1.count(i)
+		if(re>c):
+			c = re
+			k = i
+	if(c == 1):
+		return(hand,int(hand1[0]))
+	if(c == 2):
+		f = 10+ int(k)+int(k)
+		return(hand,f)
+	if(c == 3):
+		f = 20 + int(k) + int(k) + int(k)
+
+		return(hand,f)
