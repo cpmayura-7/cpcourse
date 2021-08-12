@@ -11,7 +11,25 @@
 
 
 def fun_applycaesarcipher(msg, shift):
-	return ""
+	li=[]
+	msg1=msg.split(" ")
+	#print(msg1)
+	for i in msg1:
+		result=""
+		for char in i:
+			if (char.isupper()):
+				result += chr((ord(char) + shift-65) % 26 + 65)
+			else:
+				result += chr((ord(char) + shift - 97) % 26 + 97)
+		li.append(result)
+	#print(li)
+	st1=""
+	if(len(li)>1):
+		for i in li:
+			st1+=str(i)+" "
+		return st1
+	else:
+		return li[0]
 
 
 
