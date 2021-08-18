@@ -13,6 +13,22 @@
 #   [ 2, 1]]
 # Each row and each column add to 3, but one diagonal adds to 2 and the other to 4.
 
-def ismostlymagicsquare(a):
+def ismostlymagicsquare(mat):
 	# Your code goes here
-	pass
+	n = len(mat)
+	sumd1=0
+	sumd2=0
+	for i in range(n):
+		sumd1+=mat[i][i]
+		sumd2+=mat[i][n-i-1]
+	if not(sumd1==sumd2):
+		return False
+	for i in range(n):
+		sumr=0
+		sumc=0
+		for j in range(n):
+			sumr+=mat[i][j]
+			sumc+=mat[j][i]
+		if not(sumr==sumc==sumd1):
+			return False
+	return True
