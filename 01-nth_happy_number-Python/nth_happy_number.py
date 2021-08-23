@@ -14,6 +14,34 @@
 # assert(nth_happy_number(7) == 28)
 # assert(nth_happy_number(8) == 31)
 
-
+def numsqu(n):
+    squsum = 0
+    while (n):
+        squsum += (n % 10) * (n % 10)
+        n = int(n / 10)
+    return squsum
+def happy(n):
+    n1 = n
+    n2 = n
+    while(True):
+        n1 = numsqu(n1)
+        n2 = numsqu(numsqu(n2))
+        if(n1 != n2):
+            continue
+        else:
+            break
+    return (n1 == 1)
+def happynum(n):
+    if (happy(n)):
+        return n
+    else:
+        return 4        
 def nth_happy_number(n):
-	return 0
+    i=1
+    j=0
+    while(i<=n):
+        j += 1
+        if(happy(j)):
+            print(j)
+            i +=1
+    return j
