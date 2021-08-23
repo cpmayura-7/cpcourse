@@ -16,7 +16,21 @@
 # assert(ishappynumber(98) == False)
 # assert(ishappynumber(404) == True)
 # assert(ishappynumber(405) == False)
-
+def numsqu(n):
+    squsum = 0
+    while (n):
+        squsum += (n % 10) * (n % 10)
+        n = int(n / 10)
+    return squsum
 def ishappynumber(n):
 	# your code goes here
-	pass
+    n1 = n
+    n2 = n
+    while(True):
+        n1 = numsqu(n1)
+        n2 = numsqu(numsqu(n2))
+        if(n1 != n2):
+            continue
+        else:
+            break
+    return (n1 == 1)
